@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './material.module';
+import { ExpensesModule } from './expenses/expenses.module';
 
 
 @NgModule({
@@ -17,10 +18,11 @@ import { MaterialModule } from './material.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DashboardModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    DashboardModule,
+    ExpensesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
