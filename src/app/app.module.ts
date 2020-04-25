@@ -6,8 +6,8 @@ import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from './material.module';
 
 
 @NgModule({
@@ -20,6 +20,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     DashboardModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
