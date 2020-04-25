@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ExpensesRoutingModule } from './expenses-routing.module';
 import { CreateExpenseComponent } from './create-expense/create-expense.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [CreateExpenseComponent],
   imports: [
-    CommonModule,
+    SharedModule,
     ExpensesRoutingModule
   ]
 })
