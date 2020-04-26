@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
 import { FlexModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,11 +10,13 @@ import { FlexModule } from '@angular/flex-layout';
   declarations: [],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MaterialModule,
     FlexModule
   ],
   exports: [
     CommonModule,
+    ReactiveFormsModule,
     MaterialModule,
     FlexModule
 

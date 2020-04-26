@@ -1,18 +1,18 @@
 <div class="container">
-  <form style="margin: 20px">
+  <form [formGroup]="form" (ngSubmit)="save()" style="margin: 20px">
     <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="20px grid">
       <mat-form-field appearance="fill" fxFlex="33" fxFlex.lt-md="50">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="A short name">
+        <input matInput formControlName="name" placeholder="A short name">
       </mat-form-field>
       <mat-form-field appearance="fill" fxFlex="33" fxFlex.lt-md="50">
         <mat-label>Ammount</mat-label>
-        <input matInput placeholder="The total ammount of the expense">
+        <input matInput formControlName="ammount" placeholder="The total ammount of the expense">
         <mat-icon matPrefix>attach_money</mat-icon>
       </mat-form-field>
       <mat-form-field appearance="fill" fxFlex="100">
         <mat-label>Description</mat-label>
-        <textarea matInput placeholder="Describe what the expense is about"></textarea>
+        <textarea matInput formControlName="description" placeholder="Describe what the expense is about"></textarea>
       </mat-form-field>
     </div>
     <button mat-raised-button color="primary">Save</button>
