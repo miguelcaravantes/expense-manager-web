@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material.module';
 import { FlexModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FieldDirective } from './forms/field.directive';
+import { FieldErrorDirective } from './forms/field-error.directive';
+import { PendingFieldDirective } from './forms/pending-field.directive';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [FieldDirective, PendingFieldDirective, FieldErrorDirective],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -18,8 +21,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
-    FlexModule
+    FlexModule,
+    FieldDirective,
+    FieldErrorDirective,
+    PendingFieldDirective
 
   ]
+
 })
 export class SharedModule { }

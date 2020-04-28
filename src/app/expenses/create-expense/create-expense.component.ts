@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormBuilderService } from 'src/app/core/forms/form-builder.service';
 
 @Component({
   selector: 'app-create-expense',
@@ -9,12 +10,17 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CreateExpenseComponent implements OnInit {
 
   form: FormGroup = this.formBuilder.group({
-    name: [''],
+    name: ['', [Validators.required], null, {
+      required: 'Name is required'
+    }],
     ammount: [''],
     description: ['']
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+  ) {
+  }
 
   ngOnInit(): void {
   }
