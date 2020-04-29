@@ -1,5 +1,6 @@
 
 import { AbstractControl, ValidatorFn, ValidationErrors, FormArray } from '@angular/forms';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 function isEmptyInputValue(value: any): boolean {
     return value == null || value.length === 0;
@@ -40,12 +41,12 @@ export class CoreValidators {
     }
 
     static equalTo(field: string): ValidatorFn {
-        let compareControl;
+        let compareControl: AbstractControl;
         return (control: AbstractControl): ValidationErrors | null => {
             if (!compareControl) {
                 setTimeout(() => {
                     compareControl = control.parent.get(field);
-                    compareControl.valueChanges.distinctUntilChanged().subscribe(i => control.updateValueAndValidity());
+                    compareControl.valueChanges.pipe(distinctUntilChanged()).subscribe((_: any) => control.updateValueAndValidity());
                     control.updateValueAndValidity();
                 });
                 return null;
