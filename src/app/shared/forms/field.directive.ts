@@ -1,4 +1,4 @@
-import { Directive, AfterContentInit, ContentChild, ViewChild, ElementRef } from '@angular/core';
+import { Directive, AfterContentInit, ContentChild, ElementRef } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { FieldErrorDirective } from './field-error.directive';
