@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, AfterViewInit } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { FormValidationService } from '../../core/forms/form-validation.service';
 import { startWith } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { startWith } from 'rxjs/operators';
   // tslint:disable-next-line: directive-selector
   selector: 'mat-error'
 })
-export class FieldErrorDirective implements OnInit {
+export class FieldErrorDirective implements AfterViewInit {
 
   control: NgControl;
   placeholder: string;
@@ -16,12 +16,9 @@ export class FieldErrorDirective implements OnInit {
   constructor(private element: ElementRef, private validationErrorsService: FormValidationService) {
   }
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.control.statusChanges.pipe(startWith(null as string)).subscribe(this.setError);
-    });
+  ngAfterViewInit(): void {
+    this.control.statusChanges.pipe(startWith(null as string)).subscribe(this.setError);
   }
-
 
   setError = () => {
     const error = this.validationErrorsService.processErrors(this.control);
