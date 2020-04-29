@@ -9,8 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CreateExpenseComponent implements OnInit {
 
   form: FormGroup = this.formBuilder.group({
-    name: ['', [Validators.required], null, { required: 'Name is required' }],
-    ammount: ['', [Validators.min(1)], null, { min: 'The ammount must be greater than 0' }],
+    name: ['', [Validators.required, Validators.maxLength(30)], null,
+      {
+        required: 'Name is required', maxLength: 'The maximun length for Name is {requiredLength}'
+      }],
+    ammount: ['', [Validators.min(1)], null, { min: 'The ammount must be greater than {min}' }],
     description: ['']
   });
 
