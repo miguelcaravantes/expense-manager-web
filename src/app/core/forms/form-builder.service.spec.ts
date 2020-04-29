@@ -6,7 +6,9 @@ describe('FormBuilderService', () => {
   let service: FormBuilderService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [FormBuilderService]
+    });
     service = TestBed.inject(FormBuilderService);
   });
 
