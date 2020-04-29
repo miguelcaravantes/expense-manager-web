@@ -11,7 +11,7 @@ import { startWith } from 'rxjs/operators';
 export class FieldErrorDirective implements OnInit {
 
   control: NgControl;
-  placeholder: string;
+  controlLabel: string;
 
   constructor(private element: ElementRef, private validationErrorsService: FormValidationService) {
   }
@@ -25,7 +25,7 @@ export class FieldErrorDirective implements OnInit {
 
   setError = () => {
     const error = this.validationErrorsService.processErrors(this.control);
-    this.element.nativeElement.innerHTML = error.replace('[name]', `<b>${this.placeholder}</b>`);
+    this.element.nativeElement.innerHTML = error.replace('[name]', `<b>${this.controlLabel}</b>`);
   }
 
 }
