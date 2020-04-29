@@ -8,8 +8,9 @@
       </mat-form-field>
       <mat-form-field appearance="fill" fxFlex="33" fxFlex.lt-md="50">
         <mat-label>Ammount</mat-label>
-        <input matInput formControlName="ammount" placeholder="The total ammount of the expense">
+        <input  type="number"  formControlName="ammount" placeholder="The total ammount of the expense">
         <mat-icon matPrefix>attach_money</mat-icon>
+        <mat-error></mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill" fxFlex="100">
         <mat-label>Description</mat-label>
