@@ -52,5 +52,5 @@ const defaultMessages = {
   required: 'This field is required',
   email: 'The email format is not valid',
   minlength: 'The minimun length is {requiredLength}',
-  maxlength: 'The maximun length {requiredLength}',
+  maxlength: 'The maximun length is {requiredLength}',
 };
