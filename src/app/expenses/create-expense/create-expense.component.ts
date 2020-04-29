@@ -10,7 +10,7 @@ export class CreateExpenseComponent implements OnInit {
 
   form: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required], null, { required: 'Name is required' }],
-    ammount: ['', [Validators.min(1)], null, { min: 'The ammoun must be greater than 0' }],
+    ammount: ['', [Validators.min(1)], null, { min: 'The ammount must be greater than 0' }],
     description: ['']
   });
 
