@@ -11,6 +11,7 @@ import { MaterialModule } from './material.module';
 import { ExpensesModule } from './expenses/expenses.module';
 import { FormBuilder } from '@angular/forms';
 import { FormBuilderService } from './core/forms/form-builder.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FormBuilderService } from './core/forms/form-builder.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FlexLayoutModule,
     MaterialModule,
     DashboardModule,
@@ -29,7 +31,7 @@ import { FormBuilderService } from './core/forms/form-builder.service';
   providers:
     [
       { provide: FormBuilder, useClass: FormBuilderService },
-      FormBuilderService
+      FormBuilderService,
     ],
   bootstrap: [AppComponent]
 })
