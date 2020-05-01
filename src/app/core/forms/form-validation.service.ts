@@ -49,7 +49,7 @@ export class FormValidationService {
 
 
 const defaultMessages = {
-  required: 'This field is required',
+  required: '[name] is required',
   email: 'The email format is not valid',
   minlength: 'The minimun length is {requiredLength}',
   maxlength: 'The maximun length is {requiredLength}',

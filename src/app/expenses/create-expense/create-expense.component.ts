@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ExpenseService } from '../expense.service';
 
 @Component({
   selector: 'app-create-expense',
@@ -13,12 +14,13 @@ export class CreateExpenseComponent implements OnInit {
       {
         required: '[name] is required', maxLength: 'The maximun length for [name] is {requiredLength}'
       }],
-    ammount: ['', [Validators.min(1)], null, { min: 'The ammount must be greater than {min}' }],
+    ammount: ['', [Validators.min(1), Validators.required], null, { min: 'The <b>Ammount</b> must be greater than {min}' }],
     description: ['']
   });
 
   constructor(
     private formBuilder: FormBuilder,
+    private expenseService: ExpenseService
   ) {
   }
 
@@ -26,7 +28,7 @@ export class CreateExpenseComponent implements OnInit {
   }
 
   save(): void {
-    alert(JSON.stringify(this.form.getRawValue()));
+    this.expenseService.createExpense(this.form.getRawValue()).subscribe(() => alert('saved'));
   }
 
 }

@@ -11,7 +11,8 @@ import { MaterialModule } from './material.module';
 import { ExpensesModule } from './expenses/expenses.module';
 import { FormBuilder } from '@angular/forms';
 import { FormBuilderService } from './core/forms/form-builder.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BaseUrlInterceptor } from './core/http-interceptor/base-url.interceptor';
 
 
 @NgModule({
@@ -32,6 +33,11 @@ import { HttpClientModule } from '@angular/common/http';
     [
       { provide: FormBuilder, useClass: FormBuilderService },
       FormBuilderService,
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: BaseUrlInterceptor,
+        multi: true
+      }
     ],
   bootstrap: [AppComponent]
 })
