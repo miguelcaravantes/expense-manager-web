@@ -15,9 +15,7 @@ export class CreateCategoryComponent implements OnInit {
     name: ['', [Validators.required, Validators.maxLength(30)], null,
       {
         required: '[name] is required', maxLength: 'The maximun length for [name] is {requiredLength}'
-      }],
-    ammount: ['', [Validators.min(1), Validators.required], null, { min: 'The <b>Ammount</b> must be greater than {min}' }],
-    description: ['']
+      }]
   });
 
   constructor(
