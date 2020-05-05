@@ -1,0 +1,12 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="save()" style="margin: 20px">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="20px grid">
+        <mat-form-field appearance="fill" fxFlex="33" fxFlex.lt-md="50">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="A short name" required>
+          <mat-error></mat-error>
+        </mat-form-field>
+      </div>
+      <button [disabled]="!form.valid" mat-raised-button color="primary">Save</button>
+    </form>
+  </div>

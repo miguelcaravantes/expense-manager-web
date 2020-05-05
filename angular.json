@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "expense-manager-web"
+  "defaultProject": "expense-manager-web",
+  "cli": {
+    "analytics": "73aec424-40e1-422f-91d8-5fa2a923c711"
+  }
 }

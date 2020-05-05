@@ -1,3 +1,4 @@
+import { CategoriesModule } from './categories/categories.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -28,6 +29,7 @@ import { BaseUrlInterceptor } from './core/http-interceptor/base-url.interceptor
     MaterialModule,
     DashboardModule,
     ExpensesModule,
+    CategoriesModule
   ],
   providers:
     [
