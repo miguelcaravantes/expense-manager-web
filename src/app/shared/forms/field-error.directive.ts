@@ -24,7 +24,7 @@ export class FieldErrorDirective implements AfterViewInit {
 
   setError = () => {
     if (this.control) {
-      this.element.nativeElement.innerHTML = this.validationErrorsService.processErrors(this.control);
+      this.element.nativeElement.innerHTML = this.validationErrorsService.processErrors(this.control, this.controlLabel);
     }
   }
 
