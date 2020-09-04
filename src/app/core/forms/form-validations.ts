@@ -13,11 +13,11 @@ export class CoreValidators {
 
     static minValue = <T>(min: T): ValidatorFn =>
         (control: AbstractControl): ValidationErrors | null =>
-            !isEmptyInputValue(control.value) ? (control.value >= min ? null : { minValue: true }) : null
+            isEmptyInputValue(control.value) || control.value >= min ? null : { minValue: true }
 
     static maxValue = <T>(max: T): ValidatorFn =>
         (control: AbstractControl): ValidationErrors | null =>
-            !isEmptyInputValue(control.value) ? (control.value <= max ? null : { maxValue: true }) : null
+            isEmptyInputValue(control.value) || control.value <= max ? null : { maxValue: true }
 
 
     static email = (control: AbstractControl): ValidationErrors | null =>
@@ -33,15 +33,14 @@ export class CoreValidators {
 
             const subscribe = () => comparisionControl?.valueChanges.pipe(distinctUntilChanged())
                 .subscribe(() => control.updateValueAndValidity());
+            const store = () => comparisionControl = control.parent?.get(field);
+            const init = () => { store(); subscribe(); };
 
             if (!comparisionControl) {
-                comparisionControl = control.parent?.get(field);
-                subscribe();
-                console.log(comparisionControl);
-
+                init();
             }
 
-            return comparisionControl ? (comparisionControl.value === control.value ? null : { equalsTo: { field } }) : null;
+            return !comparisionControl || comparisionControl.value === control.value ? null : { equalsTo: { field } };
         };
     }
 
