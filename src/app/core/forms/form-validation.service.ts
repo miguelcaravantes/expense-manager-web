@@ -16,12 +16,15 @@ export class FormValidationService {
 
   constructor() { }
 
-  processErrors(ngControl: NgControl): string {
+  processErrors(ngControl: NgControl, label?: string): string {
     const { control, errors } = ngControl;
     const join = (p: string, c: string) => `${p}. ${c}`;
+    const insertName = (name?: string) => (m: string) => name ? m.replace(/\[name\]/g, `<b>${name}</b>`) : m;
+
     return control && errors ?
       Object.keys(errors)
         .map(key => this.getMessages(control, errors, key))
+        .map(insertName(label))
         .reduce(join) : '';
   }
 
@@ -36,6 +39,8 @@ export class FormValidationService {
   getControlMessages(control: AbstractControl): { [key: string]: string } {
     return Reflect.get(control, 'validationMessages') || {};
   }
+
+
 
   private processMessage(message: string, errorPayload: { [key: string]: string }): string {
     return message.replace(/{.*?}/g, (match, _) => {
