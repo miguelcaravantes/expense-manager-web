@@ -15,11 +15,6 @@ export class PendingFieldDirective implements AfterViewInit {
   ngAfterViewInit(): void {
     const addClass = () => this.element.nativeElement.classList.add(this.appPendingField);
     const removeClass = () => this.element.nativeElement.classList.add(this.appPendingField);
-    const control = this.control;
-    if (control) {
-      control.statusChanges?.pipe(startWith('')).subscribe(status => status === 'PENDING' ? addClass() : removeClass());
-    }
+    this.control?.statusChanges?.pipe(startWith('')).subscribe(status => status === 'PENDING' ? addClass() : removeClass());
   }
-
-
 }
