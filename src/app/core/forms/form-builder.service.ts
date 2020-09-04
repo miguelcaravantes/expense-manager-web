@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormBuilder } from '@angular/forms';
+import { AbstractControl, FormBuilder, AbstractControlOptions, FormGroup } from '@angular/forms';
 
 @Injectable()
 export class FormBuilderService extends FormBuilder {
 
-  _createControl(controlConfig: any): AbstractControl {
-    // tslint:disable-next-line: no-string-literal
-    const control = super['_createControl'](controlConfig);
-    if (Array.isArray(controlConfig)) {
-      const messages: { [key: string]: string } = controlConfig[3] || {};
-      Reflect.set(control, 'validationMessages', messages);
-    }
-    return control;
+  group(
+    // tslint:disable-next-line: no-any
+    controlsConfig: { [key: string]: any },
+    // tslint:disable-next-line: no-any
+    options: AbstractControlOptions | { [key: string]: any } | null = null): FormGroup {
+
+    const group = super.group(controlsConfig, options);
+    Object.entries(controlsConfig).forEach(
+      ([name, config]) => Array.isArray(config) && Reflect.set(group.get(name) || {}, 'validationMessages', config[3])
+    );
+    return group;
   }
 }
+

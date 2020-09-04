@@ -1,28 +1,25 @@
-import { Directive, OnInit, Input, ElementRef } from '@angular/core';
-import { startWith } from 'rxjs/operators';
+import { Directive, OnInit, Input, ElementRef, AfterViewInit } from '@angular/core';
+import { startWith, map } from 'rxjs/operators';
 import { NgControl } from '@angular/forms';
 
 @Directive({
   selector: '[appPendingField]'
 })
-export class PendingFieldDirective implements OnInit {
-  control: NgControl;
-  @Input() appPendingField: string;
+export class PendingFieldDirective implements AfterViewInit {
+  control?: NgControl;
+  @Input() appPendingField!: string;
 
   constructor(private element: ElementRef) {
   }
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.control.statusChanges.pipe(startWith(null as string)).subscribe(() => {
-        if (this.control.pending) {
-          this.element.nativeElement.classList.add(this.appPendingField);
-        } else {
-          this.element.nativeElement.classList.remove(this.appPendingField);
-        }
-      }
-      );
-    });
+  ngAfterViewInit(): void {
+    const addClass = () => this.element.nativeElement.classList.add(this.appPendingField);
+    const removeClass = () => this.element.nativeElement.classList.add(this.appPendingField);
+    const control = this.control;
+    if (control) {
+      control.statusChanges?.pipe(startWith('')).subscribe(status => status === 'PENDING' ? addClass() : removeClass());
+    }
   }
+
 
 }

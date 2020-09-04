@@ -10,19 +10,23 @@ import { startWith } from 'rxjs/operators';
 })
 export class FieldErrorDirective implements AfterViewInit {
 
-  control: NgControl;
-  controlLabel: string;
+  control?: NgControl;
+  controlLabel?: string;
 
   constructor(private element: ElementRef, private validationErrorsService: FormValidationService) {
   }
 
   ngAfterViewInit(): void {
-    this.control.statusChanges.pipe(startWith(null as string)).subscribe(this.setError);
+    if (this.control) {
+      this.control.statusChanges?.pipe(startWith('')).subscribe(this.setError);
+    }
   }
 
   setError = () => {
-    const error = this.validationErrorsService.processErrors(this.control);
-    this.element.nativeElement.innerHTML = error.replace('[name]', `<b>${this.controlLabel}</b>`);
+    if (this.control) {
+      const error = this.validationErrorsService.processErrors(this.control);
+      this.element.nativeElement.innerHTML = error.replace('[name]', `<b>${this.controlLabel}</b>`);
+    }
   }
 
 }

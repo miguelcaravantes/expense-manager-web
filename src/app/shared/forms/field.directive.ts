@@ -12,11 +12,11 @@ import { MatLabel } from '@angular/material/form-field';
 export class FieldDirective implements AfterContentInit {
 
 
-  @ContentChild(NgControl) ngControl: NgControl;
-  @ContentChild(FieldErrorDirective) inputError: FieldErrorDirective;
-  @ContentChild(PendingFieldDirective) pendingField: PendingFieldDirective;
-  @ContentChild(MatInput) matInput: MatInput;
-  @ContentChild(MatLabel, { read: ElementRef }) matLabel: ElementRef;
+  @ContentChild(NgControl) ngControl!: NgControl;
+  @ContentChild(FieldErrorDirective) inputError!: FieldErrorDirective;
+  @ContentChild(PendingFieldDirective) pendingField?: PendingFieldDirective;
+  @ContentChild(MatInput) matInput!: MatInput;
+  @ContentChild(MatLabel, { read: ElementRef }) matLabel!: ElementRef;
 
 
   constructor() {
