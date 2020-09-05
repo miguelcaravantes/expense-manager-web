@@ -13,10 +13,9 @@ export class FieldDirective implements AfterContentInit {
 
 
   @ContentChild(NgControl) ngControl!: NgControl;
-  @ContentChild(FieldErrorDirective) inputError!: FieldErrorDirective;
+  @ContentChild(FieldErrorDirective) inputError?: FieldErrorDirective;
   @ContentChild(PendingFieldDirective) pendingField?: PendingFieldDirective;
-  @ContentChild(MatInput) matInput!: MatInput;
-  @ContentChild(MatLabel, { read: ElementRef }) matLabel!: ElementRef;
+  @ContentChild(MatLabel, { read: ElementRef }) matLabel?: ElementRef;
 
 
   constructor() {
@@ -26,9 +25,7 @@ export class FieldDirective implements AfterContentInit {
   ngAfterContentInit(): void {
     if (this.inputError) {
       this.inputError.control = this.ngControl;
-      if (this.matLabel) {
-        this.inputError.controlLabel = this.matLabel.nativeElement.innerText;
-      }
+      this.inputError.controlLabel = this.matLabel?.nativeElement?.innerText;
     }
 
     if (this.pendingField) {
